@@ -14,7 +14,18 @@ class User:
         else:
             print("Insufficient funds or invalid amount.")
 
-account = User("Алексей", 1000)
-account.deposit(500)
-account.withdraw(300)
-account.withdraw(1500)
+class Bank:
+    def transfer(self, sender, receiver, amount):
+        if amount > 0 and amount <= sender.balance:
+            sender.withdraw(amount)
+            receiver.deposit(amount)
+            print("Перевод выполнен успешно! 💳")
+        else:
+            print("Ошибка перевода: недостаточно средств или неверная сумма.")
+
+bank = Bank()
+account1 = User("Алексей", 1000)
+account2 = User("Мария", 500)
+
+bank.transfer(account1, account2, 300)
+bank.transfer(account1, account2, 1500)
