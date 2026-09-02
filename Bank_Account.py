@@ -2,21 +2,24 @@
 class User:
     def __init__(self, name, balance):
         self.name = name
-        self.balance = balance
+        self.__balance = balance
 
     def deposit(self, amount):
         if amount > 0:
-            self.balance = self.balance + amount
+            self.__balance = self.__balance + amount
 
     def withdraw(self, amount):
-        if amount > 0 and amount <= self.balance:
-            self.balance = self.balance - amount
+        if amount > 0 and amount <= self.__balance:
+            self.__balance = self.__balance - amount
         else:
             print("Insufficient funds or invalid amount.")
+    def get_balance(self,):
+        return self.__balance
+ 
 
 class Bank:
     def transfer(self, sender, receiver, amount):
-        if amount > 0 and amount <= sender.balance:
+        if amount > 0 and amount <= sender.get_balance():
             sender.withdraw(amount)
             receiver.deposit(amount)
             print("Перевод выполнен успешно! 💳")
@@ -24,8 +27,7 @@ class Bank:
             print("Ошибка перевода: недостаточно средств или неверная сумма.")
 
 bank = Bank()
-account1 = User("Алексей", 1000)
-account2 = User("Мария", 500)
+user1 = User("Анна", 1000)
+user2 = User("Иван", 500)
 
-bank.transfer(account1, account2, 300)
-bank.transfer(account1, account2, 1500)
+    print(user1.get_balance()
