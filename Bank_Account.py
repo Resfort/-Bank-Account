@@ -13,3 +13,8 @@ class User:
             self.balance = self.balance - amount
         else:
             print("Insufficient funds or invalid amount.")
+
+account = User("Алексей", 1000)
+account.deposit(500)
+account.withdraw(300)
+account.withdraw(1500)
