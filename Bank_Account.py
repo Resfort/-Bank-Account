@@ -13,8 +13,10 @@ class User:
             self.__balance = self.__balance - amount
         else:
             print("Insufficient funds or invalid amount.")
-    def get_balance(self,):
+    def get_balance(self):
         return self.__balance
+    def __str__(self):
+        return f"Пользователь: {self.name} | Баланс: {self.__balance} тенге."
  
 
 class Bank:
@@ -30,4 +32,4 @@ bank = Bank()
 user1 = User("Анна", 1000)
 user2 = User("Иван", 500)
 
-    print(user1.get_balance()
+print(user1.get_balance())
