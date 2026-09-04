@@ -1,18 +1,26 @@
 
 class User:
-    def __init__(self, name, balance):
+    def __init__(self, name, balance,):
         self.name = name
         self.__balance = balance
+        self.history = []
 
     def deposit(self, amount):
         if amount > 0:
             self.__balance = self.__balance + amount
+            self.history.append(f"Пополнение: +{amount} тенге")
+        else:
+            print("Неверная сумма для пополнения.")
+        
 
     def withdraw(self, amount):
         if amount > 0 and amount <= self.__balance:
             self.__balance = self.__balance - amount
+            self.history.append(f"Снятие: -{amount} тенге")
         else:
-            print("Insufficient funds or invalid amount.")
+            print("Недостаточно средств или неверная сумма.")
+            return True
+        return False
     def get_balance(self):
         return self.__balance
     def __str__(self):
