@@ -25,7 +25,15 @@ class User:
         return self.__balance
     def __str__(self):
         return f"Пользователь: {self.name} | Баланс: {self.__balance} тенге."
- 
+    
+    def show_history(self):
+        if not self.history:
+            print("История операций пуста.")
+            return
+        i = 0 
+        while i < len(self.history):
+            print(self.history[i])
+            i += 1
 
 class Bank:
     def transfer(self, sender, receiver, amount):
@@ -36,8 +44,9 @@ class Bank:
         else:
             print("Ошибка перевода: недостаточно средств или неверная сумма.")
 
-bank = Bank()
 user1 = User("Анна", 1000)
-user2 = User("Иван", 500)
+user1.deposit(500)
+user1.withdraw(200)
+user1.deposit(300)
 
-print(user1.get_balance())
+user1.show_history()
